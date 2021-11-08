@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% block ts %}
+<title>Auth</title>
+{% endblock ts %}
+
+
+{% block content %}
+
+{% if page == 'register' %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <label for="">{{field.label}}</label>
+        {{field}}
+
+        {% if field.help_text%}
+        <small>{{field.help_text}}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p style="color: red;">{{error}}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <input type="submit">
+    <div>
+        <a href="{% url 'login' %}">do you have account ?</a>
+    </div>
+</form>
+{% else %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Login">
+</form>
+<div>
+    <a href="{% url 'register' %}">don't you have account ?</a>
+</div>
+{% endif %}
+
+
+{% endblock content %}

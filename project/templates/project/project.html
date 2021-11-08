@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block ts %}
+<title>
+    Project
+</title>
+{% endblock ts %}
+{% block content %}
+<div class="project">
+    <h1 class="title">
+        {{project.title}}
+    </h1>
+    <h5>
+        {{project.description}}
+    </h5>
+    <div class="tags" style="display:flex">
+
+        {% for tag in project.tags.all%}
+        <div style="border: 2px solid yellowgreen; padding:20px">
+            {{tag}}
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="comments">
+
+        {% for i in project.review_set.all %}
+        <div class="review">
+            <h4>
+                {{i.value}}
+            </h4>
+            <h6>
+                {{ i.body|slice:100}}...
+            </h6>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock content %}

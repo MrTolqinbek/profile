@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block ts %}
+<title>
+    Projects
+</title>
+{% endblock ts %}
+{% block content %}
+<style>
+    .image img{
+        width: 300px;
+    }
+</style>
+<div class="Projects" style="border: 2px solid blue; padding:10px">
+    {% for i in projects %}
+    <div class="project" style="align-items:center;border: 1px solid #8820Aa; padding:10px;display:flex">
+        <div class="image">
+            <img src="{{ i.image.url }}" alt="image">
+        </div>
+        <div class="title" style="padding:3px 10px ">
+            <h2>{{i.title}}</h2>
+        </div>
+        <div class="title" style="padding:3px 10px ">
+            <h2>{{i.owner.name}}</h2>
+        </div>
+        <div style="padding:3px 10px ">
+            <a href="{% url 'project' i.slug %}">View</a>
+        </div>
+        <div style="padding:3px 10px ">
+            <a href="{% url 'updateProject' i.slug %}">Update</a>
+        </div>
+        <div style="padding:3px 10px ">
+            <a href="{% url 'deleteProject' i.slug %}">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+
+{% block ts %}
+<title>Profile</title>
+{% endblock ts %}
+
+
+{% block content %}
+<div>
+  <h1> Profiles</h1>
+</div>
+<div class="profiles">
+  {% for p in profiles %}
+  <a href="{% url 'profile' p.id %}">
+    <div class="profile">
+      <img style="width: 300px;" src="{{p.image.url}}" alt="profile">
+      <h1>
+        {{p.user.username}}
+      </h1>
+      <h2>
+        {{p.shortIntro}}
+      </h2>
+    </div>
+    <div>
+
+      {% if p.github %}
+      <div>
+        <a href="{{p.github}}"> github </a>
+      </div>
+      {% endif %}
+      {% if p.youtube %}
+      <div>
+        <a href="{{p.youtube}}"> youtube </a>
+      </div>
+      {% endif %}
+      {% if p.facebook %}
+      <div>
+        <a href="{{p.facebook}}"> facebook </a>
+      </div>
+      {% endif %}
+      {% if p.twitter %}
+      <div>
+        <a href="{{p.twitter}}"> twitter </a>
+      </div>
+      {% endif %}
+      {% if p.linkedin %}
+      <div>
+        <a href="{{p.linkedin}}"> linkedin </a>
+      </div>
+      {% endif %}
+
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock content %}

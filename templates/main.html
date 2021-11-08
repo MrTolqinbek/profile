@@ -1,0 +1,36 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'styles/main.css'%}">
+    {% block ts %}
+
+    {% endblock ts %}
+
+</head>
+
+<body>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for m in messages %}
+        <li {% if m.tags %} class="{{m.tags}}" {% endif %}>{{m}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% include "header.html" %}
+    {% block content %}
+
+    {% endblock content %}
+
+    {% block scripts %}
+
+    {% endblock scripts %}
+
+</body>
+
+</html>

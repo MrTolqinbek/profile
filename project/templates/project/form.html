@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+
+{% block ts %}
+<title>Create</title>
+{% endblock ts %}
+
+{% block content %}
+<h1>
+    Form
+</h1>
+<div class="form" >
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+
+</div>
+{% endblock content %}

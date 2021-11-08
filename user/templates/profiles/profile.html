@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+
+{% block ts %}
+<title>Profile</title>
+{% endblock ts %}
+
+
+{% block content %}
+<div>
+    Profile
+</div>
+<div class="profile">
+    <div>
+        <img style="width: 300px;" src="{{profile.image.url}}" alt="image">
+    </div>
+    <div>
+        <h3>{{profile.shortIntro}}</h3>
+    </div>
+    <div>
+        <h6>
+            {{profile.bio}}
+        </h6>
+    </div>
+    <div> {% if profile.github %}
+        <div>
+            <a href="{{profile.github}}"> github </a>
+        </div>
+        {% endif %}
+        {% if profile.youtube %}
+        <div>
+            <a href="{{profile.youtube}}"> youtube </a>
+        </div>
+        {% endif %}
+        {% if profile.facebook %}
+        <div>
+            <a href="{{profile.facebook}}"> facebook </a>
+        </div>
+        {% endif %}
+        {% if profile.twitter %}
+        <div>
+            <a href="{{profile.twitter}}"> twitter </a>
+        </div>
+        {% endif %}
+        {% if profile.linkedin %}
+        <div>
+            <a href="{{profile.linkedin}}"> linkedin </a>
+        </div>
+        {% endif %}
+
+    </div>
+    <div>
+        {% for skill in profile.skill_set.all %}
+        <p>
+            {{skill}}
+        </p>
+        {% endfor %}
+    </div>
+    <div class="projects">
+        {% for p in profile.project_set.all %}
+        <a href="{% url 'project' p.slug %}">
+            <p>
+                {{p}}
+            </p>
+        </a>
+        {% for t in p.tags.all %}
+        <h3>{{t}}</h3>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
